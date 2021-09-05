@@ -30,6 +30,7 @@ extern struct wis_app_type wis_app[26];
 
 /* external functs */
 
+void log(char *); // prool
 void set_title(struct char_data *ch);
 int str_cmp(char *arg1, char *arg2);
 struct time_info_data age(struct char_data *ch);
@@ -829,7 +830,7 @@ void do_shutdow(struct char_data *ch, char *argument, int cmd)
 
 void do_shutdown(struct char_data *ch, char *argument, int cmd)
 {
-	extern int shutdown, reboot;
+	extern int shutdown_, reboot;
 	char buf[100], arg[MAX_INPUT_LENGTH];
 
 	if (IS_NPC(ch))
@@ -842,14 +843,14 @@ void do_shutdown(struct char_data *ch, char *argument, int cmd)
 		sprintf(buf, "Shutdown by %s.", GET_NAME(ch) );
 		send_to_all(buf);
 		log(buf);
-		shutdown = 1;
+		shutdown_ = 1;
 	}
 	else if (!str_cmp(arg, "reboot"))
 	{
 		sprintf(buf, "Reboot by %s.", GET_NAME(ch));
 		send_to_all(buf);
 		log(buf);
-		shutdown = reboot = 1;
+		shutdown_ = reboot = 1;
 	}
 	else
 		send_to_char("Go shut down someone your own size.\n\r", ch);

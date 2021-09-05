@@ -31,6 +31,7 @@ extern bool wizlock;
 
 /* external functs */
 
+void log(char *); // prool
 void set_title(struct char_data *ch);
 int str_cmp(char *arg1, char *arg2);
 char *skip_spaces(char *string);

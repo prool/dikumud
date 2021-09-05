@@ -20,11 +20,13 @@ extern struct char_data *character_list;
 
 /* Extern procedures */
 
+void do_look(struct char_data *ch, char *argument, int cmd); // prool
+void log(char *); // prool
 void damage(struct char_data *ch, struct char_data *victim,
             int damage, int weapontype);
 bool saves_spell(struct char_data *ch, sh_int spell);
 void weight_change_object(struct obj_data *obj, int weight);
-char *strdup(char *source);
+char *strdup_(char *source);
 int dice(int number, int size);
 
 
@@ -490,9 +492,9 @@ void spell_create_food(byte level, struct char_data *ch,
   CREATE(tmp_obj, struct obj_data, 1);
   clear_object(tmp_obj);
 
-  tmp_obj->name = strdup("mushroom");
-  tmp_obj->short_description = strdup("A Magic Mushroom");
-  tmp_obj->description = strdup("A really delicious looking magic mushroom lies here.");
+  tmp_obj->name = strdup_("mushroom");
+  tmp_obj->short_description = strdup_("A Magic Mushroom");
+  tmp_obj->description = strdup_("A really delicious looking magic mushroom lies here.");
 
   tmp_obj->obj_flags.type_flag = ITEM_FOOD;
   tmp_obj->obj_flags.wear_flags = ITEM_TAKE | ITEM_HOLD;

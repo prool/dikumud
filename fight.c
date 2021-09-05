@@ -30,6 +30,7 @@ extern struct obj_data  *object_list;
 
 /* External procedures */
 
+void log(char *); // prool
 char *fread_string(FILE *f1);
 void stop_follower(struct char_data *ch);
 void do_flee(struct char_data *ch, char *argument, int cmd);
@@ -195,7 +196,7 @@ void make_corpse(struct char_data *ch)
 	char buf[MAX_STRING_LENGTH];
 	int i;
 
-	char *strdup(char *source);
+	char *strdup_(char *source);
 	struct obj_data *create_money( int amount );
 
 	CREATE(corpse, struct obj_data, 1);
@@ -204,15 +205,15 @@ void make_corpse(struct char_data *ch)
 	
 	corpse->item_number = NOWHERE;
 	corpse->in_room = NOWHERE;
-	corpse->name = strdup("corpse");
+	corpse->name = strdup_("corpse");
 
 	sprintf(buf, "Corpse of %s is lying here.", 
 	  (IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch)));
-	corpse->description = strdup(buf);
+	corpse->description = strdup_(buf);
 
 	sprintf(buf, "Corpse of %s",
 	  (IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch)));
-	corpse->short_description = strdup(buf);
+	corpse->short_description = strdup_(buf);
 
 	corpse->contains = ch->carrying;
 	if ( (GET_GOLD(ch)>0) &&

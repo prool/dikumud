@@ -28,6 +28,7 @@
 void show_string(struct descriptor_data *d, char *input);
 
 
+void log(char *); // prool
 
 char *string_fields[] =
 {
@@ -558,7 +559,7 @@ void night_watchman(void)
 	long tc;
 	struct tm *t_info;
 
-	extern int shutdown;
+	extern int shutdown_;
 
 	void send_to_all(char *messg);
 
@@ -571,7 +572,7 @@ void night_watchman(void)
 		{
 			log("Leaving the scene for the serious folks.");
 			send_to_all("Closing down. Thank you for flying DikuMUD.\n\r");
-			shutdown = 1;
+			shutdown_ = 1;
 		}
 		else if (t_info->tm_min > 40)
 			send_to_all("ATTENTION: DikuMUD will shut down in 10 minutes.\n\r");
@@ -587,7 +588,7 @@ void check_reboot(void)
 	char dummy;
 	FILE *boot;
 
-	extern int shutdown, reboot;
+	extern int shutdown_, reboot;
 
 	tc = time(0);
 	t_info = localtime(&tc);
@@ -624,7 +625,7 @@ void check_reboot(void)
 				}
 
 				send_to_all("Automatic reboot. Come back in a little while.\n\r");
-				shutdown = reboot = 1;
+				shutdown_ = reboot = 1;
 			}
 			else if (t_info->tm_min > 40)
 				send_to_all("ATTENTION: DikuMUD will reboot in 10 minutes.\n\r");
@@ -729,7 +730,7 @@ char *nogames(void)
 	if (fl = fopen("lib/nogames", "r"))
 	{
 		log("/usr/games/nogames exists");
-		fgets(text, fl);
+		fgets(text, sizeof(text), fl); // prool
 		return(text);
 		fclose(fl);
 	}
@@ -784,7 +785,7 @@ void gr(int s)
  	};
 	static int wnr = 0;
 
-	extern int slow_death, shutdown;
+	extern int slow_death, shutdown_;
 
 	void send_to_all(char *messg);
 
@@ -817,10 +818,10 @@ void gr(int s)
 				wnr = 0;
 			}
 			else
-				shutdown = 1;
+				shutdown_ = 1;
 	}
 	else if (workhours())
-		shutdown = 1;				/* this shouldn't happen */
+		shutdown_ = 1;				/* this shouldn't happen */
 	else if (wnr)
 	{
 		send_to_all("Things look brighter now - you can continue playing.\n\r");

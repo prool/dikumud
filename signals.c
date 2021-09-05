@@ -14,6 +14,7 @@ int checkpointing(void);
 int shutdown_request(void);
 int logsig(void);
 int hupsig(void);
+void log(char *); // prool
 
 void signal_setup(void)
 {
@@ -60,10 +61,10 @@ int checkpointing(void)
 
 int shutdown_request(void)
 {
-	extern int shutdown;
+	extern int shutdown_;
 
 	log("Received USR2 - shutdown request");
-	shutdown = 1;
+	shutdown_ = 1;
 }
 
 
@@ -71,7 +72,7 @@ int shutdown_request(void)
 /* kick out players etc */
 int hupsig(void)
 {
-	extern int shutdown;
+	extern int shutdown_;
 
 	log("Received SIGHUP, SIGINT, or SIGTERM. Shutting down");
 	exit(0);   /* something more elegant should perhaps be substituted */

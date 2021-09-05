@@ -52,7 +52,7 @@ struct descriptor_data *descriptor_list, *next_to_process;
 
 int lawful = 0;		/* work like the game regulator */
 int slow_death = 0;  /* Shut her down, Martha, she's sucking mud */
-int shutdown = 0;    /* clean shutdown */
+int shutdown_ = 0;    /* clean shutdown */
 int reboot = 0;      /* reboot the game after a shutdown */
 int no_specials = 0; /* Suppress ass. of special routines */
 
@@ -188,7 +188,6 @@ int run_the_game(int port)
 
 	void signal_setup(void);
 	int load(void);
-	void coma(void);
 
 	PROFILE(monstartup((int) 2, etext);)
 
@@ -203,7 +202,7 @@ int run_the_game(int port)
 	if (lawful && load() >= 6)
 	{
 		log("System load too high at startup.");
-		coma();
+		coma(s); // prool
 	}
 
 	boot_db();
@@ -257,7 +256,7 @@ int game_loop(int s)
 		sigmask(SIGVTALRM);
 
 	/* Main loop */
-	while (!shutdown)
+	while (!shutdown_)
 	{
 		/* Check what's happening out there */
 		FD_ZERO(&input_set);
@@ -575,7 +574,7 @@ int init_socket(int port)
 		perror("setsockopt LINGER");
 		exit(1);
 	}
-	if (bind(s, &sa, sizeof(sa), 0) < 0)
+	if (bind(s, &sa, sizeof(sa)/*, 0*/) < 0) // prool
 	{
 		perror("bind");
 		close(s);
@@ -966,7 +965,7 @@ void nonblock(int s)
 #define COMA_SIGN \
 "\n\r\
 DikuMUD is currently inactive due to excessive load on the host machine.\n\r\
-Please try again later.\n\r\n
+Please try again later.\n\r\n\
 \n\r\
    Sadly,\n\r\
 \n\r\

@@ -14,6 +14,7 @@
 
 extern struct time_data time_info;
 
+void log(char *); // prool
 
 int MIN(int a, int b)
 {
@@ -40,6 +41,8 @@ int dice(int number, int size)
   int r;
   int sum = 0;
 
+	//printf("prool debug size=%i\r\n", size); // prool
+	if (size<1) size=1; // prool: dirty hack
 	assert(size >= 1);
 
   for (r = 1; r <= number; r++) sum += ((random() % size)+1);
@@ -49,7 +52,7 @@ int dice(int number, int size)
 
 
 /* Create a duplicate of a string */
-char *strdup(char *source)
+char *strdup_(char *source)
 {
 	char *new;
 

@@ -25,6 +25,7 @@ extern struct obj_data  *object_list;
 
 /* Extern procedures */
 
+void log(char *); // prool
 void die(struct char_data *ch);
 void update_pos( struct char_data *victim );
 void damage(struct char_data *ch, struct char_data *victim,
@@ -33,7 +34,7 @@ void clone_char(struct char_data *ch);
 void say_spell( struct char_data *ch, int si );
 bool saves_spell(struct char_data *ch, sh_int spell);
 void add_follower(struct char_data *ch, struct char_data *victim);
-char *strdup(char *str);
+char *strdup_(char *str);
 
 
 void cast_armor( byte level, struct char_data *ch, char *arg, int type,

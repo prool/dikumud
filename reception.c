@@ -24,6 +24,7 @@ extern struct index_data *obj_index;
 
 /* Extern functions */
 
+void log(char *); // prool
 void store_to_char(struct char_file_u *st, struct char_data *ch);
 void do_tell(struct char_data *ch, char *argument, int cmd);
 int str_cmp(char *arg1, char *arg2);

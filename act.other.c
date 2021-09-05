@@ -28,6 +28,7 @@ extern struct spell_info_type spell_info[];
 
 /* extern procedures */
 
+void log(char *); // prool
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void do_shout(struct char_data *ch, char *argument, int cmd);
 

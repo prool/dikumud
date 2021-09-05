@@ -22,6 +22,7 @@ extern struct char_data *character_list;
 
 /* Extern functions */
 
+void log(char *); // prool
 void spell_burning_hands(byte level, struct char_data *ch, 
   struct char_data *victim, struct obj_data *obj);
 void spell_call_lightning(byte level, struct char_data *ch,

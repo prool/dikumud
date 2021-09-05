@@ -23,6 +23,7 @@ extern struct room_data *world;
 
 /* extern functions */
 
+void log(char *); // prool
 void parse_string(char *input, char *output, struct char_data *ch1,
 	struct char_data *ch2, struct char_data *to);
 int action(int cmd);

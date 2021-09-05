@@ -18,6 +18,7 @@ extern struct str_app_type str_app[];
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 
+void log(char *); // prool
 
 void mobile_activity(void)
 {

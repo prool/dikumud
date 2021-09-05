@@ -24,6 +24,7 @@ extern struct room_data *world;
 		 
 /* extern functions */
 
+void log(char *); // prool
 struct obj_data *create_money( int amount );
 
 
