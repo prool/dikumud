@@ -59,6 +59,9 @@ struct weather_data weather_info;	/* the infomation about the weather */
 
 bool wizlock = FALSE;                 /* is the game wizlocked           */
 
+/* structure for the update queue     */
+struct reset_q_type // prool
+reset_q;
 
 /* local procedures */
 void boot_zones(void);
